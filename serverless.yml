@@ -45,13 +45,13 @@ resources:
       Value:
         Ref: ApiGatewayRestApi
       Export:
-        Name: RestAPIGatewayId
+        Name: KaskadiStocksRestAPIGatewayId
     RestAPIGatewayRootResourceId:
       Value: !GetAtt ApiGatewayRestApi.RootResourceId
       Export:
-        Name: RestAPIGatewayRootResourceId
+        Name: KaskadiStocksRestAPIGatewayRootResourceId
     CognitoAuthorizerId:
       Value:
         Ref: CognitoAuthorizer
       Export:
-        Name: KaskadiStockCognitoAuthorizerId
+        Name: KaskadiStocksCognitoAuthorizerId
