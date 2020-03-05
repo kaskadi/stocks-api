@@ -10,7 +10,7 @@ custom:
       info:
         version: 0.0.1
         title: ${self:service.name}
-        description: # your API description here
+        description: This API manages stocks for the Kaskadi project
 
 provider:
   name: aws
@@ -20,28 +20,26 @@ provider:
   region: ${opt:region, 'eu-central-1'}
   deploymentBucket:
     name: ${env:SLS_DEPLOY_BUCKET}
-  deploymentPrefix: ${self:service.name}
+  deploymentPrefix: '@kaskadi/${self:service.name}'
 
 resources:
   Resources:
-    # The ID of this resources needs to be ApiGatewayRestApi because that's the way the serverless-aws-documentation plugin is refering to it
     ApiGatewayRestApi:
       Type: AWS::ApiGateway::RestApi
       Properties:
         Name: ${self:service.name}
-    # Uncomment the block below if you want to add an API Gateway cognito authorizer
-    # CognitoAuthorizer:
-    #   DependsOn:
-    #     - ApiGatewayRestApi
-    #   Type: AWS::ApiGateway::Authorizer
-    #   Properties:
-    #     Name: cognito-authorizer
-    #     IdentitySource: method.request.header.Authorization
-    #     RestApiId:
-    #       Ref: ApiGatewayRestApi
-    #     Type: COGNITO_USER_POOLS
-    #     ProviderARNs:
-    #       - # ARN of your Cognito User Pool
+    CognitoAuthorizer:
+      DependsOn:
+        - ApiGatewayRestApi
+      Type: AWS::ApiGateway::Authorizer
+      Properties:
+        Name: cognito-authorizer
+        IdentitySource: method.request.header.Authorization
+        RestApiId:
+          Ref: ApiGatewayRestApi
+        Type: COGNITO_USER_POOLS
+        ProviderARNs:
+          - !ImportValue KaskadiCognitoUserPoolARN
   Outputs:
     RestAPIGatewayId:
       Value:
@@ -52,9 +50,8 @@ resources:
       Value: !GetAtt ApiGatewayRestApi.RootResourceId
       Export:
         Name: RestAPIGatewayRootResourceId
-    # Uncomment the block below in order to export the ID of your authorizer to reuse it in your Lambdas
-    # CognitoAuthorizerId:
-    #   Value:
-    #     Ref: CognitoAuthorizer
-    #   Export:
-    #     Name: CognitoAuthorizerId
+    CognitoAuthorizerId:
+      Value:
+        Ref: CognitoAuthorizer
+      Export:
+        Name: KaskadiStockCognitoAuthorizerId
