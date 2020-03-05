@@ -1,5 +1,5 @@
 service:
-  name: template-kaskadi-api
+  name: kaskadi-stocks-api
 
 plugins:
   - serverless-aws-documentation
@@ -10,7 +10,7 @@ custom:
       info:
         version: 0.0.1
         title: ${self:service.name}
-        description: Template API
+        description: # your API description here
 
 provider:
   name: aws
