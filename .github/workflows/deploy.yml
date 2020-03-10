@@ -13,16 +13,14 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: npm ci
-    # uncomment section below to enable pre deployment testing
-    # - name: serverless-check
-    #   uses: kaskadi/action-slscli@master
-    #   with:
-    #     command: 'deploy --noDeploy'
-    #     should_throw: true
-    #   env:
-    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
-    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_KEY_SECRET }}
-    #     SLS_DEPLOY_BUCKET: ${{ secrets.SLS_DEPLOY_BUCKET }}
+    - name: serverless-check
+      uses: kaskadi/action-slscli@master
+      with:
+        command: 'deploy --noDeploy'
+        should_throw: true
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_KEY_SECRET }}
     - name: serverless-deploy
       uses: kaskadi/action-slscli@master
       with:
@@ -30,4 +28,3 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_KEY_SECRET }}
-        SLS_DEPLOY_BUCKET: ${{ secrets.SLS_DEPLOY_BUCKET }}
