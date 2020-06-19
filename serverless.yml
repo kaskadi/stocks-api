@@ -1,7 +1,7 @@
 # ATTENTION: when done with setting up this file, you can go into .github/workflows/deploy.yml to use the 'deploy -v' command for this action in order to deploy your lambda
 
 service:
-  name: kaskadi-request-amz-stock-update
+  name: kaskadi-request-amz-stock-update-lambda
 
 package:
   individually: true
@@ -25,11 +25,11 @@ provider:
 
 functions:
   KaskadiRequestAmzStockUpdate:
-    handler: kaskadi-request-amz-stock-update.handler
+    handler: kaskadi-request-amz-stock-update-lambda.handler
     name: ${self:service.name}
     package:
       include:
-        - 'kaskadi-request-amz-stock-update.js'
+        - 'kaskadi-request-amz-stock-update-lambda.js'
         - 'node_modules/**'
     # configure here the proper event(s) that should trigger your lambda
     events:

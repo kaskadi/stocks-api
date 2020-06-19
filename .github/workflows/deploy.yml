@@ -7,7 +7,7 @@ on:
       - 'release/**'
     paths:
       - 'serverless.yml'
-      - 'template-kaskadi-lambda.js'
+      - 'kaskadi-request-amz-stock-update-lambda.js'
       - 'layer/**'
 jobs:
   deploy:
