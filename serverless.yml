@@ -45,6 +45,12 @@ functions:
     package:
       include:
         - 'kaskadi-request-amz-stock-update-lambda.js'
+        - 'helpers/**'
+        - 'marketplaces.js'
+    environment:
+      ACCESS_KEY: ${env:ACCESS_KEY}
+      SELLER_ID: ${env:SELLER_ID}
+      MWS_AUTH_TOKEN: ${env:MWS_AUTH_TOKEN}
     events:
       - http:
           method: get
