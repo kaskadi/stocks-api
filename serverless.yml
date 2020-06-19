@@ -41,7 +41,7 @@ functions:
     handler: request-amz-stock-update.handler
     name: ${self:service.name}
     layers:
-      - { Ref: KaskadiRequestAmzStockUpdateLayerLambdaLayer }
+      - { Ref: RequestAmzStockUpdateLayerLambdaLayer }
     package:
       include:
         - 'request-amz-stock-update.js'
