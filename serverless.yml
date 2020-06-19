@@ -15,8 +15,8 @@ provider:
   deploymentBucket:
     name: kaskadi-serverless-deployment-bucket
   apiGateway:
-    restApiId: !ImportValue KaskadiStocksRestAPIGatewayId
-    restApiRootResourceId: !ImportValue KaskadiStocksRestAPIGatewayRootResourceId
+    restApiId: !ImportValue kaskadi-stocks-api-id
+    restApiRootResourceId: !ImportValue kaskadi-stocks-api-amz-resource-id
   tags:
     app: kaskadi
     service: ${self:service.name}
@@ -54,7 +54,7 @@ functions:
     events:
       - http:
           method: get
-          path: amz/request-update
+          path: request-update
           cors: true
       - schedule:
           rate: cron(0 7 ? * * *) # runs every day at 7:00AM
