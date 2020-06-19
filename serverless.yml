@@ -8,7 +8,7 @@ custom:
   documentation:
     api:
       info:
-        version: 0.0.1
+        version: 1.0.0
         title: ${self:service.name}
         description: This API manages stocks for the Kaskadi project
 
@@ -33,12 +33,6 @@ resources:
             RestApiId: !Ref ApiGatewayRestApi
             ParentId: !GetAtt ApiGatewayRestApi.RootResourceId
             PathPart: "amz"
-    YswsResource:
-        Type: AWS::ApiGateway::Resource
-        Properties:
-            RestApiId: !Ref ApiGatewayRestApi
-            ParentId: !GetAtt ApiGatewayRestApi.RootResourceId
-            PathPart: "ysws"
     CognitoAuthorizer:
       DependsOn:
         - ApiGatewayRestApi
@@ -67,11 +61,6 @@ resources:
         Ref: AmzResource
       Export:
         Name: ${self:service.name}-amz-resource-id
-    YswsResourceId:
-      Value:
-        Ref: YswsResource
-      Export:
-        Name: ${self:service.name}-ysws-resource-id
     CognitoAuthorizerId:
       Value:
         Ref: CognitoAuthorizer
