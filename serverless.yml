@@ -27,6 +27,18 @@ resources:
       Type: AWS::ApiGateway::RestApi
       Properties:
         Name: ${self:service.name}
+    AmzResource:
+        Type: AWS::ApiGateway::Resource
+        Properties:
+            RestApiId: !Ref ApiGatewayRestApi
+            ParentId: !GetAtt ApiGatewayRestApi.RootResourceId
+            PathPart: "amz"
+    YswsResource:
+        Type: AWS::ApiGateway::Resource
+        Properties:
+            RestApiId: !Ref ApiGatewayRestApi
+            ParentId: !GetAtt ApiGatewayRestApi.RootResourceId
+            PathPart: "ysws"
     CognitoAuthorizer:
       DependsOn:
         - ApiGatewayRestApi
@@ -39,6 +51,7 @@ resources:
         Type: COGNITO_USER_POOLS
         ProviderARNs:
           - !ImportValue KaskadiCognitoUserPoolARN
+          
   Outputs:
     RestAPIGatewayId:
       Value:
@@ -49,6 +62,16 @@ resources:
       Value: !GetAtt ApiGatewayRestApi.RootResourceId
       Export:
         Name: KaskadiStocksRestAPIGatewayRootResourceId
+    AmzResourceId:
+      Value:
+        Ref: AmzResource
+      Export:
+        Name: ${self:service.name}-amz-resource-id
+    YswsResourceId:
+      Value:
+        Ref: YswsResource
+      Export:
+        Name: ${self:service.name}-ysws-resource-id
     CognitoAuthorizerId:
       Value:
         Ref: CognitoAuthorizer
