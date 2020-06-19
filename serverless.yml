@@ -14,6 +14,9 @@ provider:
   region: eu-central-1
   deploymentBucket:
     name: kaskadi-serverless-deployment-bucket
+  apiGateway:
+    restApiId: !ImportValue KaskadiStocksRestAPIGatewayId
+    restApiRootResourceId: !ImportValue KaskadiStocksRestAPIGatewayRootResourceId
   tags:
     app: kaskadi
     service: ${self:service.name}
