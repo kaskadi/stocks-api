@@ -53,12 +53,12 @@ resources:
           - !ImportValue KaskadiCognitoUserPoolARN
 
   Outputs:
-    APIId:
+    RestApiId:
       Value:
         Ref: RestApi
       Export:
         Name: ${self:service.name}-id
-    APIRootResourceId:
+    RestApiRootResourceId:
       Value: !GetAtt RestApi.RootResourceId
       Export:
         Name: ${self:service.name}-root-resource-id
