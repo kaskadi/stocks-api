@@ -23,31 +23,31 @@ provider:
 
 resources:
   Resources:
-    RestApi:
+    ApiGatewayRestApi:
       Type: AWS::ApiGateway::RestApi
       Properties:
         Name: ${self:service.name}
     AmzResource:
         Type: AWS::ApiGateway::Resource
         Properties:
-            RestApiId: !Ref RestApi
-            ParentId: !GetAtt RestApi.RootResourceId
+            RestApiId: !Ref ApiGatewayRestApi
+            ParentId: !GetAtt ApiGatewayRestApi.RootResourceId
             PathPart: "amz"
     YswsResource:
         Type: AWS::ApiGateway::Resource
         Properties:
-            RestApiId: !Ref RestApi
-            ParentId: !GetAtt RestApi.RootResourceId
+            RestApiId: !Ref ApiGatewayRestApi
+            ParentId: !GetAtt ApiGatewayRestApi.RootResourceId
             PathPart: "ysws"
     CognitoAuthorizer:
       DependsOn:
-        - RestApi
+        - ApiGatewayRestApi
       Type: AWS::ApiGateway::Authorizer
       Properties:
         Name: cognito-authorizer
         IdentitySource: method.request.header.Authorization
         RestApiId:
-          Ref: RestApi
+          Ref: ApiGatewayRestApi
         Type: COGNITO_USER_POOLS
         ProviderARNs:
           - !ImportValue KaskadiCognitoUserPoolARN
@@ -55,11 +55,11 @@ resources:
   Outputs:
     RestApiId:
       Value:
-        Ref: RestApi
+        Ref: ApiGatewayRestApi
       Export:
         Name: ${self:service.name}-id
     RestApiRootResourceId:
-      Value: !GetAtt RestApi.RootResourceId
+      Value: !GetAtt ApiGatewayRestApi.RootResourceId
       Export:
         Name: ${self:service.name}-root-resource-id
     AmzResourceId:
