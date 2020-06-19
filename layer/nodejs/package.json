@@ -1,7 +1,7 @@
 {
-  "name": "kaskadi-request-amz-stock-update-lambda-layer",
+  "name": "request-amz-stock-update-layer",
   "version": "1.0.0",
-  "description": "Layer for kaskadi-request-amz-stock-update-lambda",
+  "description": "Layer for request-amz-stock-update",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

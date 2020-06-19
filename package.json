@@ -1,5 +1,5 @@
 {
-  "name": "kaskadi-request-amz-stock-update-lambda",
+  "name": "request-amz-stock-update",
   "version": "1.0.0",
   "description": "",
   "main": "serverless.yml",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kaskadi/kaskadi-request-amz-stock-update-lambda.git"
+    "url": "git+https://github.com/kaskadi/request-amz-stock-update.git"
   },
   "keywords": [],
   "author": "Klimapartner GmbH <kontakt@klimapartner.de> (https://klimapartner.de)",
@@ -18,8 +18,8 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kaskadi/kaskadi-request-amz-stock-update-lambda/issues"
+    "url": "https://github.com/kaskadi/request-amz-stock-update/issues"
   },
-  "homepage": "https://github.com/kaskadi/kaskadi-request-amz-stock-update-lambda#readme",
+  "homepage": "https://github.com/kaskadi/request-amz-stock-update#readme",
   "dependencies": {}
 }

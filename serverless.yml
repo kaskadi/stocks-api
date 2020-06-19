@@ -1,5 +1,5 @@
 service:
-  name: kaskadi-request-amz-stock-update-lambda
+  name: request-amz-stock-update
 
 package:
   individually: true
@@ -24,7 +24,7 @@ provider:
     type: schedule, http
 
 layers:
-  KaskadiRequestAmzStockUpdateLayer:
+  RequestAmzStockUpdateLayer:
     path: layer
     name: ${self:service.name}-layer
     description: Layer for ${self:service.name}
@@ -37,14 +37,14 @@ layers:
         - '**/**'
 
 functions:
-  KaskadiRequestAmzStockUpdate:
-    handler: kaskadi-request-amz-stock-update-lambda.handler
+  RequestAmzStockUpdate:
+    handler: request-amz-stock-update.handler
     name: ${self:service.name}
     layers:
       - { Ref: KaskadiRequestAmzStockUpdateLayerLambdaLayer }
     package:
       include:
-        - 'kaskadi-request-amz-stock-update-lambda.js'
+        - 'request-amz-stock-update.js'
         - 'helpers/**'
         - 'marketplaces.js'
     environment:
