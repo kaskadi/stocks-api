@@ -9,6 +9,7 @@ async function requestReports(ids) {
     MWSAuthToken: process.env.MWS_AUTH_TOKEN
   })
   const reqOpts = {
+    _httpMethod: 'POST',
     ReportType: '_GET_MERCHANT_LISTINGS_ALL_DATA_',
     ...Object.fromEntries(ids.map((id, i) => [`MarketplaceIdList.Id.${i + 1}`, id])) // mws-client doesn't support array as parameter as of 1.0.0
   }
