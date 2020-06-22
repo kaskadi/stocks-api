@@ -1,5 +1,5 @@
 {
-  "handler": "request-amz-stock-update.handler",
+  "handler": "lambdas/request-amz-stock-update/request-amz-stock-update.handler",
   "name": "request-amz-stock-update",
   "layers": [
     {
@@ -8,9 +8,9 @@
   ],
   "package": {
     "include": [
-      "request-amz-stock-update.js",
-      "helpers/**",
-      "marketplaces.js"
+      "lambdas/request-amz-stock-update/request-amz-stock-update.js",
+      "lambdas/request-amz-stock-update/helpers/**",
+      "lambdas/request-amz-stock-update/marketplaces.js"
     ]
   },
   "environment": {
