@@ -1,5 +1,5 @@
 service:
-  name: kaskadi-stocks-api
+  name: stocks-api
 
 plugins:
   - serverless-aws-documentation
