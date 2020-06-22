@@ -1,0 +1,24 @@
+{
+  "handler": "lambdas/{{name}}/{{name}}.handler",
+  "name": "${self:service.name}-{{name}}-lambda",
+  "layers": [
+    {
+      "Ref": "ApiLayerLambdaLayer"
+    }
+  ],
+  "package": {
+    "include": [
+      "lambdas/{{name}}/{{name}}.js",
+      "lambdas/{{name}}/node_modules/**"
+    ]
+  },
+  "events": [
+    {
+      "http": {
+        "method": "{{method}}",
+        "path": "{{path}}",
+        "cors": true
+      }
+    }
+  ]
+}

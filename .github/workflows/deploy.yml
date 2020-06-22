@@ -5,14 +5,20 @@ on:
       - 'master'
       - 'release/**'
     paths:
-      - 'serverless.yml'
+      - 'serverless.json'
+      - 'layer/**'
+      - 'lambdas/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
-      run: npm ci
+      run: npm i
+    - name: Install layer dependencies
+      run: |
+        cd layer/nodejs
+        npm i
     - name: serverless-check
       uses: kaskadi/action-slscli@master
       with:
@@ -24,7 +30,7 @@ jobs:
     - name: serverless-deploy
       uses: kaskadi/action-slscli@master
       with:
-        command: 'deploy -v'
+        command: '--version'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_KEY_SECRET }}
