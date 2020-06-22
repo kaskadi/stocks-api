@@ -1,4 +1,3 @@
-# ATTENTION: no deployment should be done until serverless.yml is properly setup
 name: deploy
 on:
   push:
@@ -6,9 +5,9 @@ on:
       - 'master'
       - 'release/**'
     paths:
-      - 'serverless.yml'
-      - 'request-amz-stock-update.js'
+      - 'serverless.json'
       - 'layer/**'
+      - 'lambdas/**'
 jobs:
   deploy:
     runs-on: ubuntu-latest

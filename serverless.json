@@ -43,32 +43,14 @@
     }
   },
   "functions": {
-    "RequestAmzStocksUpdate": "${file(./lambdas/hello-world/serverless.json)}"
+    "RequestAmzStocksUpdate": "${file(./lambdas/request-amz-stock-update/serverless.json)}"
   },
   "layers": {
     "ApiLayer": "${file(./layer/serverless.json)}"
   },
   "resources": {
     "Resources": {
-      "CognitoAuthorizer": {
-        "DependsOn": [
-          "ApiGatewayRestApi"
-        ],
-        "Type": "AWS::ApiGateway::Authorizer",
-        "Properties": {
-          "Name": "cognito-authorizer",
-          "IdentitySource": "method.request.header.Authorization",
-          "RestApiId": {
-            "Ref": "ApiGatewayRestApi"
-          },
-          "Type": "COGNITO_USER_POOLS",
-          "ProviderARNs": [
-            {
-              "ImportValue": "KaskadiCognitoUserPoolARN"
-            }
-          ]
-        }
-      }
+      "CognitoAuthorizer": "${file(./resources/cognito-authorizer/serverless.json)}"
     }
   }
 }

@@ -1,0 +1,19 @@
+{
+  "DependsOn": [
+    "ApiGatewayRestApi"
+  ],
+  "Type": "AWS::ApiGateway::Authorizer",
+  "Properties": {
+    "Name": "cognito-authorizer",
+    "IdentitySource": "method.request.header.Authorization",
+    "RestApiId": {
+      "Ref": "ApiGatewayRestApi"
+    },
+    "Type": "COGNITO_USER_POOLS",
+    "ProviderARNs": [
+      {
+        "ImportValue": "KaskadiCognitoUserPoolARN"
+      }
+    ]
+  }
+}

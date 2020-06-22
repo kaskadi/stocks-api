@@ -26,9 +26,5 @@ If applicable, add screenshots to help explain your problem.
 **Error message**
 If applicable, paste here your error message.
 
-**Runtime information (please complete the following information):**
- - Runtime: [e.g. Node]
- - Runtime version: [e.g. 12.7]
-
 **Additional context**
 Add any other context about the problem here.

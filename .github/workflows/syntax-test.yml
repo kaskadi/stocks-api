@@ -5,7 +5,7 @@ on:
       - '!master'
       - '!release/**'
     paths:
-      - 'serverless.yml'
+      - 'serverless.json'
 jobs:
   test:
     runs-on: ubuntu-latest

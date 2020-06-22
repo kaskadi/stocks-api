@@ -6,5 +6,10 @@
     "nodejs10.x",
     "nodejs12.x"
   ],
-  "licenseInfo": "MIT"
+  "licenseInfo": "MIT",
+  "package": {
+    "include": [
+      "**/**"
+    ]
+  }
 }

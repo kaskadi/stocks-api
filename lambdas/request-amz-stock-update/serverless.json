@@ -1,0 +1,36 @@
+{
+  "handler": "request-amz-stock-update.handler",
+  "name": "request-amz-stock-update",
+  "layers": [
+    {
+      "Ref": "ApiLayerLambdaLayer"
+    }
+  ],
+  "package": {
+    "include": [
+      "request-amz-stock-update.js",
+      "helpers/**",
+      "marketplaces.js"
+    ]
+  },
+  "environment": {
+    "ACCESS_KEY": "${env:ACCESS_KEY}",
+    "SELLER_ID": "${env:SELLER_ID}",
+    "MWS_AUTH_TOKEN": "${env:MWS_AUTH_TOKEN}"
+  },
+  "events": [
+    {
+      "http": {
+        "method": "get",
+        "path": "request-update",
+        "cors": true
+      }
+    },
+    {
+      "schedule": {
+        "rate": "cron(0 7 ? * * *)",
+        "enabled": true
+      }
+    }
+  ]
+}
