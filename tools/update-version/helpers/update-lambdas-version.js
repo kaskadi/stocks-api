@@ -1,14 +1,12 @@
-const fs = require('fs')
-
-module.exports = (version) => {
+module.exports = (version, fs) => {
   fs.readdirSync('lambdas').forEach(lambda => {
-    updateLambda(version, lambda)
+    updateLambda(version, lambda, fs)
   })
 }
 
-function updateLambda(version, lambda) {
+function updateLambda(version, lambda, fs) {
   const path = `lambdas/${lambda}/package.json`
   let pjson = JSON.parse(fs.readFileSync(path, 'utf8'))
   pjson.version = version
-  fs.writeFileSync(path, JSON.stringify(pjson, null, 2), 'utf8')
+  fs.writeFileSync(path, `${JSON.stringify(pjson, null, 2)}\n`, 'utf8')
 }
