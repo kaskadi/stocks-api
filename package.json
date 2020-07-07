@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"No test script defined.\"",
     "preinstall": "./tools/install.sh",
-    "dev-server.start": "export NODE_PATH=./layer/nodejs/node_modules && pm2  start tools/dev-server/index.js --name dev-server --watch",
-    "dev-server.stop": "pm2 stop dev-server && pm2 delete dev-server",
-    "add-lambda": "node ./tools/add/add-lambda/add-lambda.js",
+    "dev": "export NODE_PATH=./layer/nodejs/node_modules && sls offline",
+    "add-lambda": "node ./tools/add-lambda/add-lambda.js",
     "update-version": "node ./tools/update-version/update-version.js"
   },
   "repository": {
