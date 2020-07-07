@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/kaskadi/stocks-api#readme",
   "devDependencies": {
-    "aws-sdk": "^2.638.0",
-    "serverless-aws-documentation": "^1.1.0"
+    "serverless-aws-documentation": "^1.1.0",
+    "serverless-offline": "^6.4.0",
+    "yaml": "^1.10.0"
   }
 }
