@@ -1,7 +1,6 @@
-const fs = require('fs')
-
-module.exports = (version) => {
-  let config = JSON.parse(fs.readFileSync('serverless.json', 'utf8'))
+module.exports = (version, fs) => {
+  const YAML = require('yaml')
+  let config = YAML.parse(fs.readFileSync('serverless.yml', 'utf8'))
   config.custom.documentation.api.info.version = version
-  fs.writeFileSync('serverless.json', JSON.stringify(config, null, 2), 'utf8')
+  fs.writeFileSync('serverless.yml', YAML.stringify(config), 'utf8')
 }
