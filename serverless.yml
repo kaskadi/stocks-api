@@ -1,0 +1,39 @@
+service:
+  name: stocks-api
+package:
+  individually: true
+  exclude:
+    - '**/**'
+plugins:
+  - serverless-aws-documentation
+  - serverless-offline
+custom:
+  documentation:
+    api:
+      info:
+        version: 1.0.0
+        title: ${self:service.name}
+        description: Stocks management API
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stackName: ${self:service.name}-stack
+  apiName: ${self:service.name}
+  stage: ${opt:stage, 'prod'}
+  region: eu-central-1
+  deploymentBucket:
+    name: kaskadi-serverless-deployment-bucket
+  stackTags:
+    app: kaskadi
+  tags:
+    app: kaskadi
+    service: ${self:service.name}
+    logical-unit: stocks
+    type: schedule and http
+functions:
+  RequestAmzStocksUpdate: ${file(./lambdas/request-amz-stock-update/serverless.yml)}
+layers:
+  ApiLayer: ${file(./layer/serverless.yml)}
+resources:
+  Resources:
+    CognitoAuthorizer: ${file(./resources/cognito-authorizer/serverless.yml)}
