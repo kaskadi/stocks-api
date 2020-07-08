@@ -7,11 +7,12 @@ const collmex = require('collmex-client')({
 })
 
 module.exports = () => {
-  return Promise.all([getEanProductNrMap(), getStocks()])
-    .then(combineData)
+  return Promise.all([getEanProduktnummerMap(), getStocks()])
+    .then(objectifyData)
+    .then(parseData)
 }
 
-function getEanProductNrMap () {
+function getEanProduktnummerMap () {
   return collmex.get({ Satzart: 'PRODUCT_GET' })
   .then(products => products.filter(product => product.Satzart === 'CMXPRD'))
   .then(products => products.filter(product => product.EAN.length > 0))
@@ -24,13 +25,18 @@ function getStocks () {
     .then(products => products.filter(product => product.Satzart === 'STOCK_AVAILABLE'))
 }
 
-function combineData (data) {
-  const eanProductNrMap = data[0]
-  const stocks = data[1]
-  const filteredStocks = stocks.filter(stock => eanProductNrMap[stock.Produktnummer])
+function objectifyData (data) {
+  return {
+    eanProduktnummerMap: data[0],
+    stocks: data[1]
+  }
+}
+
+function parseData (data) {
+  const filteredStocks = data.stocks.filter(stock => data.eanProduktnummerMap[stock.Produktnummer])
   return filteredStocks.map(stock => {
     return {
-      ean: eanProductNrMap[stock.Produktnummer],
+      ean: data.eanProduktnummerMap[stock.Produktnummer],
       quantity: Number(stock['Verfügbarer_Bestand'])
     }
   })
