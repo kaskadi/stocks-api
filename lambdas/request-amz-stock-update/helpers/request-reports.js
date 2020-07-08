@@ -4,18 +4,18 @@ module.exports = (codes) => {
   return requestReports(codes)
 }
 
-async function requestReports(codes) {
+async function requestReports (codes) {
   let endpoints = codes.map(code => marketplaces[code].endpoint)
   endpoints = [...new Set(endpoints)]
   const codesPerEndpoint = endpoints.map(endpoint => codes.filter(code => marketplaces[code].endpoint === endpoint))
   let data = []
   for (const endpointCodes of codesPerEndpoint) {
-    data.push(await requestReportsForEndpoint(endpointCodes))
+    data = [...data, await requestReportsForEndpoint(endpointCodes)]
   }
   return data
 }
 
-async function requestReportsForEndpoint(codes) {
+async function requestReportsForEndpoint (codes) {
   const MWS = require('mws-client')({
     AWSAccessKeyId: process.env.ACCESS_KEY,
     SellerId: process.env.SELLER_ID,
@@ -30,6 +30,6 @@ async function requestReportsForEndpoint(codes) {
   return await MWS.reports.requestReport(reqOpts).then(processMwsResponse)
 }
 
-function processMwsResponse(mwsData) {
+function processMwsResponse (mwsData) {
   return mwsData.body.RequestReportResponse.RequestReportResult.ReportRequestInfo
 }

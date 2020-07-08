@@ -1,7 +1,7 @@
 const getStocks = require('./helpers/get-stocks.js')
 
 module.exports.handler = async (event) => {
-  var res = { 
+  var res = {
     statusCode: 200,
     headers: {
       'Access-Control-Allow-Origin': '*'

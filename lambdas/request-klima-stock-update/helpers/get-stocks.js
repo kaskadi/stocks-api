@@ -1,6 +1,6 @@
 const collmex = require('collmex-client')({
-  User : process.env.CMX_CLIENT_USER,
-  Password : process.env.CMX_CLIENT_PWD,
+  User: process.env.CMX_CLIENT_USER,
+  Password: process.env.CMX_CLIENT_PWD,
   CMXKundennummer: process.env.CMX_CUST_ID,
   Firma_Nr: 1,
   Systemname: 'kaskadi-collmex-client'
@@ -14,10 +14,10 @@ module.exports = () => {
 
 function getEanProduktnummerMap () {
   return collmex.get({ Satzart: 'PRODUCT_GET' })
-  .then(products => products.filter(product => product.Satzart === 'CMXPRD'))
-  .then(products => products.filter(product => product.EAN.length > 0))
-  .then(products => products.filter(product => product.Produktnummer.length > 0))
-  .then(products => Object.fromEntries(products.map(product => [product.Produktnummer, product.EAN])))
+    .then(products => products.filter(product => product.Satzart === 'CMXPRD'))
+    .then(products => products.filter(product => product.EAN.length > 0))
+    .then(products => products.filter(product => product.Produktnummer.length > 0))
+    .then(products => Object.fromEntries(products.map(product => [product.Produktnummer, product.EAN])))
 }
 
 function getStocks () {

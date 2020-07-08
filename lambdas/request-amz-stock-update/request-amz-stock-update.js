@@ -3,7 +3,7 @@ const requestReports = require('./helpers/request-reports.js')
 
 module.exports.handler = async (event) => {
   // care with throttling. For now there is none because our SellerID and tokens only work for EU which has a single endpoint. But this may be different in the future!
-  var res = { 
+  var res = {
     statusCode: 200,
     headers: {
       'Access-Control-Allow-Origin': '*'
@@ -12,7 +12,7 @@ module.exports.handler = async (event) => {
   const countryCodes = getCountryCodes(event.queryStringParameters)
   if (countryCodes.length === 0) {
     res.statusCode = 400
-    res.body = JSON.stringify({ message: `Please provide a valid country code in your query string.` })
+    res.body = JSON.stringify({ message: 'Please provide a valid country code in your query string.' })
     return res
   }
   return await requestReports(countryCodes)
