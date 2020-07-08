@@ -8,8 +8,8 @@ package:
     - lambdas/request-klima-stock-update/helpers/**
     - lambdas/request-klima-stock-update/node_modules/**
 environment:
-  CMX_USER: ${env:CMX_USER}
-  CMX_PWD: ${env:CMX_PWD}
+  CMX_CLIENT_USER: ${env:CMX_CLIENT_USER}
+  CMX_CLIENT_PWD: ${env:CMX_CLIENT_PWD}
   CMX_CUST_ID: ${env:CMX_CUST_ID}
 events:
   - http:
