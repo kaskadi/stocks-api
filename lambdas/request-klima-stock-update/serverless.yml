@@ -1,0 +1,13 @@
+handler: lambdas/request-klima-stock-update/request-klima-stock-update.handler
+name: ${self:service.name}-request-klima-stock-update-lambda
+layers:
+  - { Ref: ApiLayerLambdaLayer }
+package:
+  include:
+    - lambdas/request-klima-stock-update/request-klima-stock-update.js
+    - lambdas/request-klima-stock-update/node_modules/**
+events:
+  - http:
+      method: get
+      path: klima/request-update
+      cors: true
