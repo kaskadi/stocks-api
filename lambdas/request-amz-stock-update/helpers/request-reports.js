@@ -1,7 +1,7 @@
 const marketplaces = require('../marketplaces.js')
 
-module.exports = async (codes) => {
-  return await requestReports(codes).then(getApiResponse)
+module.exports = (codes) => {
+  return requestReports(codes)
 }
 
 async function requestReports(codes) {
@@ -32,14 +32,4 @@ async function requestReportsForEndpoint(codes) {
 
 function processMwsResponse(mwsData) {
   return mwsData.body.RequestReportResponse.RequestReportResult.ReportRequestInfo
-}
-
-function getApiResponse(data) {
-  return {
-    statusCode: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*'
-    },
-    body: JSON.stringify(data)
-  }
 }
