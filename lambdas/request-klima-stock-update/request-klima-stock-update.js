@@ -1,4 +1,5 @@
 const getStocks = require('./helpers/get-stocks.js')
+const publishMsg = require('./helpers/publish-msg.js')
 
 module.exports.handler = async (event) => {
   var res = {
@@ -8,8 +9,9 @@ module.exports.handler = async (event) => {
     }
   }
   return await getStocks()
-    .then(stocks => {
-      res.body = JSON.stringify(stocks)
+    .then(publishMsg)
+    .then(res => {
+      res.body = JSON.stringify({ message: 'Stock updated successfully requested!' })
       return res
     })
     .catch(err => {
