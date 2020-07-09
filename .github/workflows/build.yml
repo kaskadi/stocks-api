@@ -19,3 +19,13 @@ jobs:
       run: npm i
     - name: Test
       run: npm test
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_KEY_SECRET }}
+        ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+        SELLER_ID: ${{ secrets.SELLER_ID }}
+        MWS_AUTH_TOKEN: ${{ secrets.MWS_AUTH_TOKEN }}
+        CMX_CLIENT_USER: ${{ secrets.CMX_CLIENT_USER }}
+        CMX_CLIENT_PWD: ${{ secrets.CMX_CLIENT_PWD }}
+        CMX_CUST_ID: ${{ secrets.CMX_CUST_ID }}
+        QUEUE_URL: ${{ secrets.QUEUE_URL }}
