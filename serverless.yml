@@ -3,7 +3,7 @@ service:
 package:
   individually: true
   exclude:
-    - '**/**'
+    - "**/**"
 plugins:
   - serverless-aws-documentation
   - serverless-offline
@@ -32,8 +32,10 @@ provider:
     type: schedule and http
 functions:
   RequestAmzStocksUpdate: ${file(./lambdas/request-amz-stock-update/serverless.yml)}
+  RequestKlimaStockUpdate: ${file(./lambdas/request-klima-stock-update/serverless.yml)}
 layers:
   ApiLayer: ${file(./layer/serverless.yml)}
 resources:
   Resources:
     CognitoAuthorizer: ${file(./resources/cognito-authorizer/serverless.yml)}
+    RequestKlimaStockUpdateRole: ${file(./resources/request-klima-stock-update-role/serverless.yml)}

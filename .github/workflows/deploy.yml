@@ -31,6 +31,10 @@ jobs:
         ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
         SELLER_ID: ${{ secrets.SELLER_ID }}
         MWS_AUTH_TOKEN: ${{ secrets.MWS_AUTH_TOKEN }}
+        CMX_CLIENT_USER: ${{ secrets.CMX_CLIENT_USER }}
+        CMX_CLIENT_PWD: ${{ secrets.CMX_CLIENT_PWD }}
+        CMX_CUST_ID: ${{ secrets.CMX_CUST_ID }}
+        QUEUE_URL: ${{ secrets.QUEUE_URL }}
     - name: serverless-deploy
       uses: kaskadi/action-slscli@master
       with:
@@ -41,3 +45,7 @@ jobs:
         ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
         SELLER_ID: ${{ secrets.SELLER_ID }}
         MWS_AUTH_TOKEN: ${{ secrets.MWS_AUTH_TOKEN }}
+        CMX_CLIENT_USER: ${{ secrets.CMX_CLIENT_USER }}
+        CMX_CLIENT_PWD: ${{ secrets.CMX_CLIENT_PWD }}
+        CMX_CUST_ID: ${{ secrets.CMX_CUST_ID }}
+        QUEUE_URL: ${{ secrets.QUEUE_URL }}
