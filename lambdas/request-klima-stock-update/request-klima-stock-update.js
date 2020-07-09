@@ -11,7 +11,7 @@ module.exports.handler = async (event) => {
   return await getStocks()
     .then(publishMsg)
     .then(data => {
-      lambdaRes.body = JSON.stringify({ message: 'Stock updated successfully requested!' })
+      lambdaRes.body = JSON.stringify({ message: 'Stock update successfully requested!' })
       return lambdaRes
     })
     .catch(err => {

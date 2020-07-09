@@ -17,7 +17,7 @@ module.exports.handler = async (event) => {
   }
   return await requestReports(countryCodes)
     .then(data => {
-      lambdaRes.body = JSON.stringify(data)
+      lambdaRes.body = JSON.stringify({ message: 'Stock update successfully requested!' })
       return lambdaRes
     })
     .catch(err => {
