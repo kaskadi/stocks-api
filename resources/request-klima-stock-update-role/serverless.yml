@@ -36,4 +36,4 @@ Properties:
               Action:
                 - "sqs:SendMessage"
               Resource:
-                - arn:aws:sqs:eu-central-1:374163881813:klima-stocks-update-queue
+                - !Join [ ":", [ arn:aws:sqs, Ref: AWS::Region, Ref: AWS::AccountId, klima-stocks-update-queue ] ]
