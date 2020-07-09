@@ -1,6 +1,6 @@
 Type: AWS::IAM::Role
 Properties:
-  RoleName: request-klima-stock-update-role # required if you want to use 'serverless deploy --function' later on
+  RoleName: request-klima-stock-update-role
   AssumeRolePolicyDocument:
     Version: '2012-10-17'
     Statement:
@@ -9,7 +9,7 @@ Properties:
           Service:
             - lambda.amazonaws.com
         Action: sts:AssumeRole
-  # note that these rights are needed if you want your function to be able to communicate with resources within your vpc
+  # needed rights to allow lambda to communicate inside of a VPC
   ManagedPolicyArns:
     - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
   Policies:
@@ -17,7 +17,8 @@ Properties:
       PolicyDocument:
         Version: '2012-10-17'
         Statement:
-          - Effect: Allow # note that these rights are given in the default policy and are required if you want logs out of your lambda(s)
+          # base policy for lambda to log into CloudWatch
+          - Effect: Allow
             Action:
               - logs:CreateLogGroup
               - logs:CreateLogStream
@@ -30,6 +31,7 @@ Properties:
                   - Ref: 'AWS::Region'
                   - Ref: 'AWS::AccountId'
                   - 'log-group:/aws/lambda/*:*:*'
+          # policy to allow lambda to publish to SQS
           -  Effect: "Allow"
               Action:
                 - "sqs:SendMessage"
