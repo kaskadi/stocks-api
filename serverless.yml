@@ -38,3 +38,4 @@ layers:
 resources:
   Resources:
     CognitoAuthorizer: ${file(./resources/cognito-authorizer/serverless.yml)}
+    RequestKlimaStockUpdateRole: ${file(./resources/request-klima-stock-update-role/serverless.yml)}
