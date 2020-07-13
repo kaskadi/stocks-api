@@ -19,3 +19,6 @@ events:
       method: get
       path: klima/request-update
       cors: true
+  - schedule:
+      rate: cron(0 7 ? * * *)
+      enabled: true
