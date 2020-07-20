@@ -15,6 +15,6 @@
   "license": "MIT",
   "dependencies": {
     "collmex-client": "^1.0.5",
-    "mws-client": "^1.0.3"
+    "mws-client": "^1.0.4"
   }
 }
