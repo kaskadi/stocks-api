@@ -32,3 +32,4 @@ jobs:
         MWS_KEY_SECRET: ${{ secrets.MWS_KEY_SECRET }}
         AMZ_EU_SELLER_ID: ${{ secrets.AMZ_EU_SELLER_ID }}
         QUEUE_URL: ${{ secrets.QUEUE_URL }}
+        COGNITO_USER_POOL_ARN: ${{ secrets.COGNITO_USER_POOL_ARN }}

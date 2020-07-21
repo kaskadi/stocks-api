@@ -19,6 +19,9 @@ events:
       method: get
       path: klima/request-update
       cors: true
+      authorizer:
+        type: COGNITO_USER_POOLS
+        authorizerId: !Ref CognitoAuthorizer
   - schedule:
       rate: cron(0 7 ? * * *)
       enabled: true

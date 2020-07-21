@@ -8,5 +8,5 @@ Properties:
     Ref: ApiGatewayRestApi
   Type: COGNITO_USER_POOLS
   ProviderARNs:
-    - !ImportValue KaskadiCognitoUserPoolARN
+    - ${env:COGNITO_USER_POOL_ARN}
     
