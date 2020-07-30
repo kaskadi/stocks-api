@@ -13,7 +13,7 @@ custom:
       info:
         version: 1.0.0
         title: ${self:service.name}
-        description: Stocks management API
+        description: API to manage stocks
 provider:
   name: aws
   runtime: nodejs12.x
