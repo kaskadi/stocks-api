@@ -1,5 +1,5 @@
 const getStocks = require('./helpers/get-stocks.js')
-const publishMsg = require('./helpers/publish-msg.js')
+const { publishMsg } = require('kaskadi-stocks-utils')
 
 module.exports.handler = async (event) => {
   var lambdaRes = {
@@ -9,7 +9,7 @@ module.exports.handler = async (event) => {
     }
   }
   return await getStocks()
-    .then(publishMsg)
+    .then(stocks => publishMsg(stocks, process.env.KLIMA_QUEUE_URL))
     .then(data => {
       lambdaRes.body = JSON.stringify({ message: 'Stock update successfully requested!' })
       return lambdaRes
