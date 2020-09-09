@@ -1,5 +1,7 @@
 handler: lambdas/request-amz-stock-update/request-amz-stock-update.handler
 name: request-amz-stock-update
+timeout: 30
+role: RequestAmzStockUpdateRole
 layers:
   - { Ref: ApiLayerLambdaLayer }
 package:
