@@ -6,7 +6,7 @@ module.exports = (eventData, stocksEventType) => {
     Entries: eventData.map(data => {
       return {
         Detail: JSON.stringify({
-          ...data,
+          ResponsePayload: data,
           stocksEventType
         }),
         EventBusName: process.env.STOCKS_BUS_ARN.split('/').pop()
