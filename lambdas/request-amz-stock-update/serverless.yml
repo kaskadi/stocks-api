@@ -13,7 +13,6 @@ environment:
   MWS_KEY_ID: ${env:MWS_KEY_ID}
   MWS_KEY_SECRET: ${env:MWS_KEY_SECRET}
   AMZ_EU_SELLER_ID: ${env:AMZ_EU_SELLER_ID}
-  AMZ_REPORT_QUEUE_URL: ${env:AMZ_REPORT_QUEUE_URL}
 events:
   - http:
       method: get

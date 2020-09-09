@@ -13,7 +13,6 @@ environment:
   CMX_CLIENT_USER: ${env:CMX_CLIENT_USER}
   CMX_CLIENT_PWD: ${env:CMX_CLIENT_PWD}
   CMX_CUST_ID: ${env:CMX_CUST_ID}
-  KLIMA_STOCKS_UPDATE_QUEUE_URL: ${env:KLIMA_STOCKS_UPDATE_QUEUE_URL}
 events:
   - http:
       method: get
