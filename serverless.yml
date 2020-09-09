@@ -32,6 +32,12 @@ provider:
     type: schedule and http
   environment:
     STOCKS_BUS_ARN: ${env:STOCKS_BUS_ARN}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'events:PutEvents'
+      Resource:
+        - ${env:STOCKS_BUS_ARN}
 functions:
   RequestAmzStocksUpdate: ${file(./lambdas/request-amz-stock-update/serverless.yml)}
   RequestKlimaStockUpdate: ${file(./lambdas/request-klima-stock-update/serverless.yml)}
