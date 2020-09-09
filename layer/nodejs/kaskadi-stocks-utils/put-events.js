@@ -1,11 +1,14 @@
 const AWS = require('aws-sdk')
 const EB = new AWS.EventBridge({ apiVersion: '2015-10-07' })
 
-module.exports = (eventData) => {
+module.exports = (eventData, stocksEventType) => {
   const params = {
     Entries: eventData.map(data => {
       return {
-        Detail: data,
+        Detail: JSON.stringify({
+          ...data,
+          stocksEventType
+        }),
         EventBusName: process.env.STOCKS_BUS_ARN.split('/').pop()
       }
     })

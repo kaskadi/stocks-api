@@ -1,3 +1,3 @@
 module.exports = {
-  putEvent: require('./put-event.js')
+  putEvents: require('./put-events.js')
 }
