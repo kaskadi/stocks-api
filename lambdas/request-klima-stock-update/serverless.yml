@@ -1,7 +1,6 @@
 handler: lambdas/request-klima-stock-update/request-klima-stock-update.handler
 name: request-klima-stock-update
 timeout: 30
-role: RequestKlimaStockUpdateRole
 layers:
   - { Ref: ApiLayerLambdaLayer }
 package:
