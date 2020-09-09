@@ -1,3 +1,3 @@
 module.exports = {
-  publishMsg: require('./publish-msg.js')
+  putEvent: require('./put-event.js')
 }
