@@ -9,7 +9,7 @@ module.exports.handler = async (event) => {
     }
   }
   return await getStocks()
-    .then(stocks => publishMsg(stocks, process.env.KLIMA_QUEUE_URL))
+    .then(stocks => publishMsg(stocks, process.env.KLIMA_STOCKS_UPDATE_QUEUE_URL))
     .then(data => {
       lambdaRes.body = JSON.stringify({ message: 'Stock update successfully requested!' })
       return lambdaRes

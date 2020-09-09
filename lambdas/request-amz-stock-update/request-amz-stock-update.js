@@ -17,7 +17,7 @@ module.exports.handler = async (event) => {
     return lambdaRes
   }
   return await requestReports(countryCodes)
-    .then(reportsData => publishMsg(reportsData, process.env.AMZ_QUEUE_URL))
+    .then(reportsData => publishMsg(reportsData, process.env.AMZ_REPORT_QUEUE_URL))
     .then(data => {
       lambdaRes.body = JSON.stringify({ message: 'Stock update successfully requested!' })
       return lambdaRes
