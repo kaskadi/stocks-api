@@ -4,7 +4,8 @@
   "description": "Layer for request-amz-stock-update",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cp -r kaskadi-stocks-utils node_modules/kaskadi-stocks-utils"
   },
   "keywords": [],
   "author": "Klimapartner GmbH <kontakt@klimapartner.de> (https://klimapartner.de)",
