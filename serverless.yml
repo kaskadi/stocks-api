@@ -39,4 +39,4 @@ resources:
   Resources:
     CognitoAuthorizer: ${file(./resources/cognito-authorizer/serverless.yml)}
     RequestKlimaStockUpdateRole: ${file(./resources/request-klima-stock-update-role/serverless.yml)}
-    RequestAmzStockUpdateRole: ${file(./resources/request-amz-stock-update-role/serverless.yml)}
+    RequestAmzListingReportRole: ${file(./resources/request-amz-listing-report-role/serverless.yml)}
