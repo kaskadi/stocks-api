@@ -29,8 +29,8 @@ jobs:
         MWS_KEY_ID: ${{ secrets.MWS_KEY_ID }}
         MWS_KEY_SECRET: ${{ secrets.MWS_KEY_SECRET }}
         AMZ_EU_SELLER_ID: ${{ secrets.AMZ_EU_SELLER_ID }}
-        QUEUE_URL: ${{ secrets.QUEUE_URL }}
         COGNITO_USER_POOL_ARN: ${{ secrets.COGNITO_USER_POOL_ARN }}
+        STOCKS_BUS_ARN: ${{ secrets.EB_STOCKS_BUS_ARN }}
     - name: serverless deploy
       uses: serverless/github-action@master
       with:
@@ -44,5 +44,5 @@ jobs:
         MWS_KEY_ID: ${{ secrets.MWS_KEY_ID }}
         MWS_KEY_SECRET: ${{ secrets.MWS_KEY_SECRET }}
         AMZ_EU_SELLER_ID: ${{ secrets.AMZ_EU_SELLER_ID }}
-        QUEUE_URL: ${{ secrets.QUEUE_URL }}
         COGNITO_USER_POOL_ARN: ${{ secrets.COGNITO_USER_POOL_ARN }}
+        STOCKS_BUS_ARN: ${{ secrets.EB_STOCKS_BUS_ARN }}

@@ -1,5 +1,6 @@
 const getCountryCodes = require('./helpers/get-country-codes.js')
 const requestReports = require('./helpers/request-reports.js')
+const { putEvents } = require('kaskadi-stocks-utils')
 
 module.exports.handler = async (event) => {
   // care with throttling. For now there is none because our SellerID and tokens only work for EU which has a single endpoint. But this may be different in the future!
@@ -16,6 +17,7 @@ module.exports.handler = async (event) => {
     return lambdaRes
   }
   return await requestReports(countryCodes)
+    .then(stocks => putEvents(stocks, 'amz-report-request'))
     .then(data => {
       lambdaRes.body = JSON.stringify({ message: 'Stock update successfully requested!' })
       return lambdaRes

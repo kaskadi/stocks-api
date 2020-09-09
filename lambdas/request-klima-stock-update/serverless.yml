@@ -1,7 +1,6 @@
 handler: lambdas/request-klima-stock-update/request-klima-stock-update.handler
 name: request-klima-stock-update
 timeout: 30
-role: RequestKlimaStockUpdateRole
 layers:
   - { Ref: ApiLayerLambdaLayer }
 package:
@@ -13,7 +12,6 @@ environment:
   CMX_CLIENT_USER: ${env:CMX_CLIENT_USER}
   CMX_CLIENT_PWD: ${env:CMX_CLIENT_PWD}
   CMX_CUST_ID: ${env:CMX_CUST_ID}
-  QUEUE_URL: ${env:QUEUE_URL}
 events:
   - http:
       method: get
