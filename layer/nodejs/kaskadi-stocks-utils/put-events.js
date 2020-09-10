@@ -12,7 +12,7 @@ module.exports = (eventData, stocksEventType) => {
           }
         }),
         DetailType: '',
-        Source: process.env.LAMBDA_ARN,
+        Source: '',
         Resources: [''],
         EventBusName: process.env.STOCKS_BUS_ARN.split('/').pop()
       }
