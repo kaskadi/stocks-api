@@ -11,8 +11,8 @@ module.exports = (eventData, stocksEventType) => {
             stocksEventType
           }
         }),
-        DetailType: '',
-        Source: '',
+        DetailType: 'stocks data',
+        Source: 'stocks-api',
         Resources: [''],
         EventBusName: process.env.STOCKS_BUS_ARN.split('/').pop()
       }
