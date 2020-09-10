@@ -5,12 +5,12 @@ module.exports = (eventData, stocksEventType) => {
   const params = {
     Entries: eventData.map(data => {
       return {
-        Detail: {
-          responsePayload: JSON.stringify({
+        Detail: JSON.stringify({
+          responsePayload: {
             ...data,
             stocksEventType
-          })
-        },
+          }
+        }),
         EventBusName: process.env.STOCKS_BUS_ARN.split('/').pop()
       }
     })
