@@ -11,6 +11,9 @@ module.exports = (eventData, stocksEventType) => {
             stocksEventType
           }
         }),
+        DetailType: '',
+        Source: process.env.LAMBDA_ARN,
+        Resources: [''],
         EventBusName: process.env.STOCKS_BUS_ARN.split('/').pop()
       }
     })
