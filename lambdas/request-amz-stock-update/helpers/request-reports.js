@@ -15,7 +15,7 @@ async function requestReports (codes) {
   return data
 }
 
-async function requestReportsForEndpoint (codes) {
+function requestReportsForEndpoint (codes) {
   const MWS = require('mws-client')({
     AWSAccessKeyId: process.env.MWS_KEY_ID,
     SellerId: process.env.AMZ_EU_SELLER_ID,
@@ -27,9 +27,14 @@ async function requestReportsForEndpoint (codes) {
     ReportType: '_GET_MERCHANT_LISTINGS_ALL_DATA_',
     ...Object.fromEntries(codes.map((code, i) => [`MarketplaceIdList.Id.${i + 1}`, marketplaces[code].id])) // mws-client doesn't support array as parameter as of 1.0.0
   }
-  return await MWS.reports.requestReport(reqOpts).then(processMwsResponse)
+  return MWS.reports.requestReport(reqOpts).then(processMwsResponse(codes))
 }
 
-function processMwsResponse (mwsData) {
-  return mwsData.body.RequestReportResponse.RequestReportResult.ReportRequestInfo
+function processMwsResponse (marketplaces) {
+  return mwsData => {
+    return {
+      ReportRequestInfo: mwsData.body.RequestReportResponse.RequestReportResult.ReportRequestInfo,
+      marketplaces
+    }
+  }
 }

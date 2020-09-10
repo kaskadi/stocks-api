@@ -34,10 +34,14 @@ function objectifyData (data) {
 
 function parseData (data) {
   const filteredStocks = data.stocks.filter(stock => data.eanProduktnummerMap[stock.Produktnummer])
-  return [filteredStocks.map(stock => {
-    return {
-      ean: data.eanProduktnummerMap[stock.Produktnummer],
-      quantity: Number(stock['Verfügbarer_Bestand'])
+  return [
+    {
+      stocks: filteredStocks.map(stock => {
+        return {
+          ean: data.eanProduktnummerMap[stock.Produktnummer],
+          quantity: Number(stock['Verfügbarer_Bestand'])
+        }
+      })
     }
-  })]
+  ]
 }
