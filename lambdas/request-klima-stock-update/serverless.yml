@@ -20,6 +20,8 @@ events:
       authorizer:
         type: COGNITO_USER_POOLS
         authorizerId: !Ref CognitoAuthorizer
+      kaskadi-docs:
+        description: This endpoint initialize a stock update for all in-house stocks at Klimapartner GmbH.
   - schedule:
       rate: cron(0 7 ? * * *)
       enabled: true
