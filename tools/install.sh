@@ -1,11 +1,8 @@
-# Layer
-echo "installing layer"
-echo "changing directory"
-cd layer/nodejs
-echo $(pwd)
-echo "installing dependencies"
-npm i
-echo "done"
-echo "cleaning up"
-cd ../..
-echo $(pwd)
+#!/bin/bash
+
+if [ -d "layer" ] && [ -f "layer/nodejs/package.json" ]
+  then
+    cd layer/nodejs || exit
+    npm i
+    cd ../../
+fi
