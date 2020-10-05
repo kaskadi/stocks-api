@@ -1,5 +1,6 @@
 handler: lambdas/{{name}}/{{name}}.handler
-name: ${self:service.name}-{{name}}-lambda
+name: {{name}}
+# customize as needed to connect your lambda function to layers
 layers:
   - { Ref: ApiLayerLambdaLayer }
 package:
@@ -11,3 +12,21 @@ events:
       method: {{method}}
       path: {{path}}
       cors: true
+      # custom fields allowing you to describe your endpoint in order to automatically document it
+      kaskadi-docs:
+        description: placeholder endpoint # describe what this endpoint is used for
+        # this field helps you describe any query string parameter accepted by this endpoint
+        queryStringParameters:
+          - key: key1
+            description: first key
+          - key: key2
+            description: second key
+            default: 35 # you can give a default value
+        # this field helps you describe the body expected by your endpoint
+        body:
+          - key: param1
+            description: first body param
+            default: 'hello'
+          - key: param2
+            description: second body param
+            default: true
