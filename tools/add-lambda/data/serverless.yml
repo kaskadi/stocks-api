@@ -30,3 +30,26 @@ events:
           - key: param2
             description: second body param
             default: true
+        # this field allows you to define a set of request/response examples to display in the documentation
+        examples:
+          - request:
+              pathParameters: # any path parameters specified in here will be swapped by their respective value in the example request
+                id: 123
+                some-param: true
+                another_param: hey
+                proxy+: hello
+              headers:
+                'Content-Type': 'application/json'
+              queryStringParameters:
+                key1: hello
+                key2: test
+              body:
+                param1: does not make sense in GET
+                param2: but this is a test
+            response:
+              statusCode: 200
+              headers:
+                'x-kaskadi-data': some data
+              body:
+                resParam1: hello
+                resParam2: test

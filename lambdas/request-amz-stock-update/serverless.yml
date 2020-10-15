@@ -25,6 +25,32 @@ events:
         queryStringParameters:
           - key: code
             description: The code of the marketplace you would like to refresh stocks for. If nothing is specified, this will start an update process for all marketplaces.
+        examples:
+          - request:
+              queryStringParameters:
+                code: DE
+            response:
+              statusCode: 200
+              headers:
+                'Access-Control-Allow-Origin': '*'
+              body:
+                message: Stock update successfully requested!
+          - request: {}
+            response:
+              statusCode: 200
+              headers:
+                'Access-Control-Allow-Origin': '*'
+              body:
+                message: Stock update successfully requested!
+          - request:
+              queryStringParameters:
+                code: WRONG_MARKETPLACE_CODE
+            response:
+              statusCode: 400
+              headers:
+                'Access-Control-Allow-Origin': '*'
+              body:
+                message: Please provide a valid country code in your query string.
   - schedule:
       rate: cron(0 7 ? * * *)
       enabled: true
