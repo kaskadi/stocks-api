@@ -25,20 +25,28 @@
 <!-- automatically generated documentation will be placed in here -->
 # API endpoints
 
+The origin and root path for this API is: `https://api.klimapartner.net/stocks`
+
 The following endpoints are defined in this API:
 - [/amz/request-update](#/amz/request-update)
 - [/klima/request-update](#/klima/request-update)
 
-## `/amz/request-update` (target lambda → [request-amz-stock-update](#request-amz-stock-update)) <a name="/amz/request-update"></a>
+## `/amz/request-update` <a name="/amz/request-update"></a>
 
 Supported methods:
-- [GET](#GET)
+- [GET](#amz/request-update-GET)
 
-### `GET`
+### `GET` (target lambda → [request-amz-stock-update](#request-amz-stock-update)) <a name="amz/request-update-GET"></a>
 
 **Description:**
 
 This endpoint initialize a stock update for all Amazon stocks of Klimapartner GmbH.
+
+**Authorization:**
+
+|   Type  | Identity source                                       |
+| :-----: | :---------------------------------------------------- |
+| Cognito | <ul><li>method.request.header.Authorization</li></ul> |
 
 **Query string parameters:**
 
@@ -50,22 +58,108 @@ This endpoint initialize a stock update for all Amazon stocks of Klimapartner Gm
 
 No body found for this method.
 
-_Example request:_
+**Examples:**
+
+<details>
+<summary>Example #1</summary>
+
+_Request:_
 
 ```HTTP
-GET /amz/request-update?code=code_value
+GET https://api.klimapartner.net/stocks/amz/request-update?code=DE
+
+Headers:
+  Authorization: Bearer COGNITO_ACCESS_TOKEN
 ```
 
-## `/klima/request-update` (target lambda → [request-klima-stock-update](#request-klima-stock-update)) <a name="/klima/request-update"></a>
+_Response:_
+
+```HTTP
+Status code:
+  200
+
+Headers:
+  Access-Control-Allow-Origin: *
+
+Body:
+  {
+    "message": "Stock update successfully requested!"
+  }
+```
+</details>
+
+<details>
+<summary>Example #2</summary>
+
+_Request:_
+
+```HTTP
+GET https://api.klimapartner.net/stocks/amz/request-update
+
+Headers:
+  Authorization: Bearer COGNITO_ACCESS_TOKEN
+```
+
+_Response:_
+
+```HTTP
+Status code:
+  200
+
+Headers:
+  Access-Control-Allow-Origin: *
+
+Body:
+  {
+    "message": "Stock update successfully requested!"
+  }
+```
+</details>
+
+<details>
+<summary>Example #3</summary>
+
+_Request:_
+
+```HTTP
+GET https://api.klimapartner.net/stocks/amz/request-update?code=WRONG_MARKETPLACE_CODE
+
+Headers:
+  Authorization: Bearer COGNITO_ACCESS_TOKEN
+```
+
+_Response:_
+
+```HTTP
+Status code:
+  400
+
+Headers:
+  Access-Control-Allow-Origin: *
+
+Body:
+  {
+    "message": "Please provide a valid country code in your query string."
+  }
+```
+</details>
+
+## `/klima/request-update` <a name="/klima/request-update"></a>
 
 Supported methods:
-- [GET](#GET)
+- [GET](#klima/request-update-GET)
 
-### `GET`
+### `GET` (target lambda → [request-klima-stock-update](#request-klima-stock-update)) <a name="klima/request-update-GET"></a>
 
 **Description:**
 
 This endpoint initialize a stock update for all in-house stocks at Klimapartner GmbH.
+
+**Authorization:**
+
+|   Type  | Identity source                                       |
+| :-----: | :---------------------------------------------------- |
+| Cognito | <ul><li>method.request.header.Authorization</li></ul> |
 
 **Query string parameters:**
 
@@ -75,11 +169,35 @@ No query string parameters found for this method.
 
 No body found for this method.
 
-_Example request:_
+**Examples:**
+
+<details>
+<summary>Example #1</summary>
+
+_Request:_
 
 ```HTTP
-GET /klima/request-update
+GET https://api.klimapartner.net/stocks/klima/request-update
+
+Headers:
+  Authorization: Bearer COGNITO_ACCESS_TOKEN
 ```
+
+_Response:_
+
+```HTTP
+Status code:
+  200
+
+Headers:
+  Access-Control-Allow-Origin: *
+
+Body:
+  {
+    "message": "Stock update successfully requested!"
+  }
+```
+</details>
 
 # API resources
 
@@ -114,8 +232,8 @@ Layer for stocks-api
 
 ### Dependencies
 
-- `collmex-client`, version: `^1.12.1` ([see on NPM](https://www.npmjs.com/package/collmex-client))
-- `mws-client`, version: `^1.1.3` ([see on NPM](https://www.npmjs.com/package/mws-client))
+- `collmex-client`, version: `1.12.1` ([see on NPM](https://www.npmjs.com/package/collmex-client))
+- `mws-client`, version: `1.1.3` ([see on NPM](https://www.npmjs.com/package/mws-client))
 - `kaskadi-stocks-utils` (local utility)
 
 See [configuration file](./serverless.yml) for more details.
