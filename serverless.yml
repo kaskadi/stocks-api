@@ -8,6 +8,9 @@ plugins:
   - serverless-aws-documentation
   - serverless-offline
 custom:
+  kaskadi-docs:
+    hostname: api.klimapartner.net
+    root: stocks
   documentation:
     api:
       info:
