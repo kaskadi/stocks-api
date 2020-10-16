@@ -13,16 +13,19 @@ module.exports = () => {
 }
 
 function getEanProduktnummerMap () {
-  return collmex.get({ Satzart: 'PRODUCT_GET' })
-    .then(products => products.filter(product => product.Satzart === 'CMXPRD'))
+  return collmexGet('PRODUCT_GET', 'CMXPRD')
     .then(products => products.filter(product => product.EAN.length > 0))
     .then(products => products.filter(product => product.Produktnummer.length > 0))
     .then(products => Object.fromEntries(products.map(product => [product.Produktnummer, product.EAN])))
 }
 
 function getStocks () {
-  return collmex.get({ Satzart: 'STOCK_AVAILABLE_GET' })
-    .then(products => products.filter(product => product.Satzart === 'STOCK_AVAILABLE'))
+  return collmexGet('STOCK_AVAILABLE_GET', 'STOCK_AVAILABLE')
+}
+
+function collmexGet (op, filter) {
+  return collmex.get({ Satzart: op })
+    .then(products => products.filter(product => product.Satzart === filter))
 }
 
 function objectifyData (data) {
