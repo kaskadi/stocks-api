@@ -21,6 +21,7 @@ env:
 jobs:
   syntax-check:
     runs-on: ubuntu-latest
+    if: github.repository != 'kaskadi/template-kaskadi-api' # this is done to skip deploy workflow to avoid the common Serverless API Gateway error when the stack hasn't been deployed yet (template won't be deployed)
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
