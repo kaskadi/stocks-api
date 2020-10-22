@@ -211,17 +211,17 @@ The following layers are used in this API:
 
 ## request-amz-stock-update <a name="request-amz-stock-update"></a>
 
-|           Name           | Sources                                 | Timeout |                                  Handler                                  | Layers                                                  |
-| :----------------------: | :-------------------------------------- | :-----: | :-----------------------------------------------------------------------: | :------------------------------------------------------ |
-| request-amz-stock-update | <ul><li>HTTP</li><li>SCHEDULE</li></ul> |   30s   | [handler](./lambdas/request-amz-stock-update/request-amz-stock-update.js) | <ul><li>[stocks-api-layer](#stocks-api-layer)</li></ul> |
+|           Name           | Sources                                       | Timeout |                                  Handler                                  | Layers                                                  |
+| :----------------------: | :-------------------------------------------- | :-----: | :-----------------------------------------------------------------------: | :------------------------------------------------------ |
+| request-amz-stock-update | <ul><li>HTTP (GET)</li><li>SCHEDULE</li></ul> |   30s   | [handler](./lambdas/request-amz-stock-update/request-amz-stock-update.js) | <ul><li>[stocks-api-layer](#stocks-api-layer)</li></ul> |
 
 See [configuration file](./serverless.yml) for more details.
 
 ## request-klima-stock-update <a name="request-klima-stock-update"></a>
 
-|            Name            | Sources                                 | Timeout |                                    Handler                                    | Layers                                                  |
-| :------------------------: | :-------------------------------------- | :-----: | :---------------------------------------------------------------------------: | :------------------------------------------------------ |
-| request-klima-stock-update | <ul><li>HTTP</li><li>SCHEDULE</li></ul> |   30s   | [handler](./lambdas/request-klima-stock-update/request-klima-stock-update.js) | <ul><li>[stocks-api-layer](#stocks-api-layer)</li></ul> |
+|            Name            | Sources                                       | Timeout |                                    Handler                                    | Layers                                                  |
+| :------------------------: | :-------------------------------------------- | :-----: | :---------------------------------------------------------------------------: | :------------------------------------------------------ |
+| request-klima-stock-update | <ul><li>HTTP (GET)</li><li>SCHEDULE</li></ul> |   30s   | [handler](./lambdas/request-klima-stock-update/request-klima-stock-update.js) | <ul><li>[stocks-api-layer](#stocks-api-layer)</li></ul> |
 
 See [configuration file](./serverless.yml) for more details.
 
