@@ -1,59 +1,64 @@
 const fs = require('fs')
-const checkArgs = require('./helpers/check-args.js')
-const getArgs = require('./helpers/get-args.js')
+const getData = require('./helpers/get-data.js')
 const createFolders = require('./helpers/create-folders.js')
 const copyFiles = require('./helpers/copy-files.js')
 const updateFiles = require('./helpers/update-files.js')
 const appendLambda = require('./helpers/append.js')
 
-const args = process.argv.slice(2)
-const argsName = ['name', 'method', 'path']
-checkArgs({
-  argsName,
-  semIndex: ['first', 'second', 'third']
-}, args)
-const data = getArgs(argsName, args)
-const pathToTool = 'tools/add-lambda'
-const pathToLambda = `lambdas/${data.name}`
-createFolders([pathToLambda], fs)
-copyFiles([
-  {
-    src: `${pathToTool}/data/handler.js`,
-    dest: `${pathToLambda}/${data.name}.js`
-  },
-  {
-    src: `${pathToTool}/data/package.json`,
-    dest: `${pathToLambda}/package.json`
-  },
-  {
-    src: `${pathToTool}/data/serverless.yml`,
-    dest: `${pathToLambda}/serverless.yml`
-  }
-], fs)
-updateFiles([
-  {
-    path: `${pathToLambda}/package.json`,
-    placeholder: '{{name}}',
-    value: data.name
-  },
-  {
-    path: `${pathToLambda}/serverless.yml`,
-    placeholder: '{{name}}',
-    value: data.name
-  },
-  {
-    path: `${pathToLambda}/serverless.yml`,
-    placeholder: '{{method}}',
-    value: data.method
-  },
-  {
-    path: `${pathToLambda}/serverless.yml`,
-    placeholder: '{{path}}',
-    value: data.path
-  }
-], fs)
-appendLambda({
-  prop: 'functions',
-  key: data.name,
-  path: pathToLambda
-}, fs)
+function getCopyData (pathToTool, pathToLambda, name) {
+  return [
+    {
+      src: `${pathToTool}/data/handler.js`,
+      dest: `${pathToLambda}/${name}.js`
+    },
+    {
+      src: `${pathToTool}/data/package.json`,
+      dest: `${pathToLambda}/package.json`
+    },
+    {
+      src: `${pathToTool}/data/serverless.yml`,
+      dest: `${pathToLambda}/serverless.yml`
+    }
+  ]
+}
+
+function getUpdateData (pathToLambda, name, method, path) {
+  return [
+    {
+      path: `${pathToLambda}/package.json`,
+      placeholder: '{{name}}',
+      value: name
+    },
+    {
+      path: `${pathToLambda}/serverless.yml`,
+      placeholder: '{{name}}',
+      value: name
+    },
+    {
+      path: `${pathToLambda}/serverless.yml`,
+      placeholder: '{{method}}',
+      value: method
+    },
+    {
+      path: `${pathToLambda}/serverless.yml`,
+      placeholder: '{{path}}',
+      value: path
+    }
+  ]
+}
+
+async function main () {
+  const { name, method, path } = await getData()
+  const pathToTool = 'tools/add-lambda'
+  const pathToLambda = `lambdas/${name}`
+  createFolders([pathToLambda], fs)
+  copyFiles(getCopyData(pathToTool, pathToLambda, name), fs)
+  updateFiles(getUpdateData(pathToLambda, name, method, path), fs)
+  appendLambda({
+    prop: 'functions',
+    key: name,
+    path: pathToLambda
+  }, fs)
+}
+
+main()
