@@ -29,9 +29,10 @@
   "devDependencies": {
     "aws-sdk": "^2.716.0",
     "chai": "^4.2.0",
-    "mocha": "^8.1.1",
-    "serverless-offline": "^6.5.0",
-    "standard": "^14.3.4",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0",
+    "serverless-offline": "^6.8.0",
+    "standard": "^16.0.1",
     "yaml": "^1.10.0"
   },
   "dependencies": {
