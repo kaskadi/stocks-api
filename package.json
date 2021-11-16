@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/kaskadi/stocks-api#readme",
   "devDependencies": {
-    "aws-sdk": "^2.716.0",
+    "aws-sdk": "^2.814.0",
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
     "nyc": "^15.1.0",
